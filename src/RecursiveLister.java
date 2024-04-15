@@ -29,7 +29,7 @@ public class RecursiveLister extends JFrame {
           });
           mainPanel.add(quitBtn);
           createTextArea();
-          mainPanel.add(TextArea);
+          mainPanel.add(textArea);
 
           setTitle("File Lister");
           add(mainPanel);
@@ -48,7 +48,7 @@ public class RecursiveLister extends JFrame {
           textArea.add(fileShow);
      }
 
-     private File loadFile() {
+     private File loadFile(){
           JFileChooser chooser = new JFileChooser();
           chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
           File selectedFile = new File("");
@@ -69,17 +69,15 @@ public class RecursiveLister extends JFrame {
           return new File("");
      }
 
-     private void listFiles(Files dir){
-          for(File currentFile : dirlistFiles()) {
-               if (currentFile.isDirectory()) {
-                    fileText.append(currentFile.getName() + "\n");
-                    listFiles(currentFile);
+     private void listFiles(File dir){
+          for(File currFile : dir.listFiles()){
+               if (currFile.isDirectory()) {
+                    fileText.append(currFile.getName() + "\n");
+                    listFiles(currFile);
                }
                else {
-                    fileText.append(currentFile.getName());
+                    fileText.append(currFile.getName() + "\n");
                }
           }
-
      }
-
 }
